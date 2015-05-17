@@ -34,6 +34,7 @@ long redis_rpush(redisContext *conn, char *list, char *data){
     char *cmd = (char*)malloc(512*sizeof(char));
     sprintf(cmd, "rpush %s %s", list, data);
     redisReply *reply = (redisReply*)redisCommand(conn, cmd);
+	free(cmd);
     cmd = '\0';
     if(3 != reply->type){
         return 0;
